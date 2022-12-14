@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import SearchInput from '../components/SearchInput/index.js'
+import SimpsonViewer from '../components/SimpsonViewer/index.js'
+import QuoteList from '../components/QuoteList/index.js'
 // import { tSImportEqualsDeclaration } from '@babel/types';
 
 function App() {
@@ -28,10 +31,9 @@ function App() {
       <div className="navbar">
       </div>
       <div className="container">
-        <input className="search-input"></input>
-        <h1 className="simpson-name">{simpson.name}</h1>
-        <img className="simpson-profile" src={simpson.image} alt="simpson-profile"></img>
-        <p className="quote">{simpson.quote}</p>
+       <SearchInput></SearchInput>
+        <SimpsonViewer name={simpson.name} image={simpson.image}></SimpsonViewer>
+        <QuoteList quote={simpson.quote}></QuoteList>
       </div>
     </div>
   );
