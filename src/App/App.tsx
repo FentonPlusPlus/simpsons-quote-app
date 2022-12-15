@@ -5,32 +5,41 @@ import SimpsonViewer from "../components/SimpsonViewer/index";
 import QuoteList from "../components/QuoteList/index";
 // import { tSImportEqualsDeclaration } from '@babel/types';
 
+type SimpsonCharacter = {
+	name: string;
+	image: string;
+	quotes: string[];
+}
 function App() {
-	const [simpson, setSimpson] = useState({
+	const [simpson, setSimpson] = useState<SimpsonCharacter>({
 		name: "",
-		quote: "",
-		// quotes: ['Eat my shorts', "Don't have a cow man"],
 		image: "",
+		quotes: [],
 	});
 
 	useEffect(() => {
 		async function getSimpson() {
 			const response = await fetch(
-				"https://thesimpsonsquoteapi.glitch.me/quotes",
+				"https://thesimpsonsquoteapi.glitch.me/quotes?count=15&character=homer",
 				{
 					headers: {
 						Accept: "application/json",
 					},
 				}
 			);
-			console.log("Response is ", response);
+			// console.log("Response is ", response);
 			const data = await response.json();
-			console.log("data is ", data);
+			// console.log("data is ", data);
+			let array = [];
+			for (let i = 0; i < data.length; i++) {
+				array.push(data[i].quote);
+				// console.log(data[i].quote)
+			}
 			setSimpson({
 				...simpson,
 				name: data[0].character,
-				quote: data[0].quote,
 				image: data[0].image,
+				quotes: array,
 			});
 		}
 		getSimpson();
@@ -47,7 +56,7 @@ function App() {
 					name={simpson.name}
 					image={simpson.image}
 				></SimpsonViewer>
-				<QuoteList quote={simpson.quote}></QuoteList>
+				<QuoteList quotes={simpson.quotes}></QuoteList>
 			</div>
 		</div>
 	);
