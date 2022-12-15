@@ -1,13 +1,17 @@
+import "./index.css";
+
 type QuoteDetails = {
-    quote: string;
+	quote: string;
+};
+
+export function QuoteList(props: QuoteDetails) {
+	const { quote } = props;
+
+	return (
+		<div className='quote-container'>
+			<p className='quote'>{quote}</p>
+		</div>
+	);
 }
 
-function QuoteList(props: QuoteDetails) {
-    const { quote } = props;
-
-  return (
-    <p className="quote">{quote}</p>
-  )
-}
-
-export default QuoteList
+export default QuoteList;

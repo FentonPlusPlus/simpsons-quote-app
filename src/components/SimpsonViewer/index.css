@@ -1,0 +1,25 @@
+.simpson-card {
+	display: flex;
+	background-color: blanchedalmond;
+	margin: auto;
+	justify-content: center;
+	align-items: center;
+	width: 450px;
+	height: 500px;
+	max-width: 450px;
+}
+
+.simpson-profile {
+	display: flex;
+	background-color: red;
+	justify-content: center;
+	align-items: center;
+}
+
+.simpson-name {
+	display: flex;
+	background-color: blue;
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+}

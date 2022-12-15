@@ -1,0 +1,13 @@
+.quote-container {
+	display: flex;
+	background-color: green;
+	text-align: center;
+	justify-content: center;
+	width: 450px;
+	max-width: 450px;
+	margin: auto;
+}
+
+.quote {
+	background-color: brown;
+}
