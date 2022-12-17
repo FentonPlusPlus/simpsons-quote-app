@@ -1,37 +1,48 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
+import debounce from 'lodash.debounce';
 import "./App.css";
 import SearchInput from "../components/SearchInput/index";
 import SimpsonViewer from "../components/SimpsonViewer/index";
 import QuoteList from "../components/QuoteList/index";
-// import { tSImportEqualsDeclaration } from '@babel/types';
+import backgroundImage from '../spring.avif'
 
 type SimpsonCharacter = {
 	name: string;
 	image: string;
 	quotes: string[];
 }
+
+type FetchData = [{quote: string, character: string, image: string, characterDirection: string}];
+//
 function App() {
+	const [data, setData] = useState<FetchData>([{quote: '', character: '', image: '', characterDirection: ''}])
 	const [simpson, setSimpson] = useState<SimpsonCharacter>({
 		name: "",
 		image: "",
 		quotes: [],
 	});
+	const [searchText, setSearchText] = useState<string>('homer');
+	const [loading, setLoading] = useState<boolean>(false);
+	const [error, setError ] = useState(null);
 
 	useEffect(() => {
 		async function getSimpson() {
+			setLoading(true);
 			const response = await fetch(
-				"https://thesimpsonsquoteapi.glitch.me/quotes?count=15&character=homer",
+				`https://thesimpsonsquoteapi.glitch.me/quotes?count=15&character=${searchText}`,
 				{
 					headers: {
 						Accept: "application/json",
 					},
-				}
-			);
-			// console.log("Response is ", response);
+				})
 			const data = await response.json();
-			// console.log("data is ", data);
+			// THIS ACTUALLY SLOWED DOWN THE APP RESPONSE BECAUSE OF ITS USE WITH DEBOUNCE
+			// .then((response) => response.json()) 
+			// .then((data) => {setData(data); setError(null)})
+			// .catch((err) => {setError(err); })
+			// .finally(() => setLoading(false));
 			let array = [];
-			for (let i = 0; i < data.length; i++) {
+			for (let i = 0; i < data?.length; i++) {
 				array.push(data[i].quote);
 				// console.log(data[i].quote)
 			}
@@ -43,20 +54,32 @@ function App() {
 			});
 		}
 		getSimpson();
-	}, []);
+	}, [searchText]);
+
+	function handleChange(e: ChangeEvent<HTMLInputElement>) {
+		const newValue = e?.target?.value;
+		setSearchText(newValue);
+		console.log(newValue);
+	}
+
+	/** this function sets lodash.debounce to put a timer on the handleChange so it doesn't call the fetch (as its a dependency) too much */
+	const debounceHandleChange = debounce(handleChange, 250);
 
 	return (
 		<div className='App'>
+			<img src={backgroundImage} alt="springfield" className='background'></img>
 			<div className='navbar'>
 				<h1 className='title'>Simpson's Quote App</h1>
 			</div>
-			<div className='container'>
-				<SearchInput></SearchInput>
-				<SimpsonViewer
-					name={simpson.name}
-					image={simpson.image}
-				></SimpsonViewer>
-				<QuoteList quotes={simpson.quotes}></QuoteList>
+			<div className='page'>
+				<div className='card-container'>
+					<SearchInput handleChange={debounceHandleChange}></SearchInput>
+					<SimpsonViewer
+						name={simpson.name}
+						image={simpson.image}
+					></SimpsonViewer>
+					<QuoteList quotes={simpson.quotes}></QuoteList>
+				</div>
 			</div>
 		</div>
 	);

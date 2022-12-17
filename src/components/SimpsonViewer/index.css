@@ -1,25 +1,41 @@
 .simpson-card {
 	display: flex;
-	background-color: blanchedalmond;
+	background-color: #228be6;
 	margin: auto;
 	justify-content: center;
 	align-items: center;
-	width: 450px;
-	height: 500px;
+	width: 400px;
+	height: 380px;
 	max-width: 450px;
+	
 }
 
 .simpson-profile {
 	display: flex;
-	background-color: red;
+	background-color: transparent;
 	justify-content: center;
 	align-items: center;
+	width: 215px;
+	max-width: 215px;
+	height: 315px;
+	max-height: 315px;
+	margin-right: -20px;
+	border-color: black;
+	border-left: 2cm;
 }
 
 .simpson-name {
 	display: flex;
-	background-color: blue;
+	flex-wrap: wrap;
+	background-color: transparent;
 	justify-content: center;
 	align-items: center;
 	width: 200px;
+	max-width: 200px;
+	margin-right: -60px;
+	margin-top: -120px;
+	font-size: 2.25em;
+	color: snow;
 }
+
+

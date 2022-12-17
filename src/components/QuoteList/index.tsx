@@ -23,9 +23,9 @@ export function QuoteList(props: QuoteDetails) {
 
 	return (
 		<div className='quote-container'>
-			<button className='decrement' onClick={increment}></button>
-			<p className='quote'>{quotes[count]}</p>
-			<button className='increment' onClick={decrement}></button>
+			<button className='button' id="decrement" onClick={increment}></button>
+			<p className='quote'>"{quotes[count]}"</p>
+			<button className='button' id="increment" onClick={decrement}></button>
 		</div>
 	);
 }

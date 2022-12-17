@@ -11,3 +11,17 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "SimpsonFont";
+  src: local("SimpsonFont"),
+   url("./fonts/Simpsonfont\ DEMO.otf") format("truetype");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Vergil";
+  src: local("Vergil"),
+   url("./fonts/Virgil.woff2") format("truetype");
+  font-weight: 400;
+}

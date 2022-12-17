@@ -1,13 +1,51 @@
 .quote-container {
 	display: flex;
-	background-color: green;
+	background-color: #fddc24;
 	text-align: center;
-	justify-content: center;
-	width: 450px;
-	max-width: 450px;
+	justify-content: space-between;
+	width: 400px;
+	max-width: 400px;
+	height: 100px;
 	margin: auto;
 }
 
 .quote {
-	background-color: brown;
+	background-color: transparent;
+	font-style: italic;
+	font-size: 1em;
+	font-family: 'Vergil';
+	font-weight: 600;
+	text-align: center;
+	-moz-text-size-adjust: auto;
+}
+
+.button {
+  position: relative;
+  background-position-x: relative;
+  background-position-y: fixed;
+  box-sizing: border-box;
+  margin-top: 20px;
+  height: 3vw;
+  width: 3vw;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  background-color: transparent;
+  border-width: 0px 4px 4px 0px;
+  transform: rotate(45deg);
+  transition: border-width 150ms ease-in-out;
+}
+
+.button:hover {
+	border-bottom-width: 6px;
+  	border-right-width: 6px;
+}
+
+#increment {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+#decrement {
+	transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
 }

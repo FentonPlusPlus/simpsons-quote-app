@@ -1,9 +1,14 @@
 .search-input {
 	display: flex;
-	background-color: orangered;
+	background-color: #fddc24;
 	text-align: center;
 	justify-content: center;
 	align-items: center;
 	margin: auto;
-	width: 450px;
+	width: 396px;
+	height: 40px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	font-size: 1.5em;
+	border-width: 0.01cm;
 }
