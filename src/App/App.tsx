@@ -5,17 +5,16 @@ import SearchInput from "../components/SearchInput/index";
 import SimpsonViewer from "../components/SimpsonViewer/index";
 import QuoteList from "../components/QuoteList/index";
 import backgroundImage from '../spring.avif'
+import { sortAndDeduplicateDiagnostics } from "typescript";
 
-type SimpsonCharacter = {
+// do we export type here as it is passed down as props?
+export type SimpsonCharacter = {
 	name: string;
 	image: string;
 	quotes: string[];
 }
 
-type FetchData = [{quote: string, character: string, image: string, characterDirection: string}];
-//
 function App() {
-	const [data, setData] = useState<FetchData>([{quote: '', character: '', image: '', characterDirection: ''}])
 	const [simpson, setSimpson] = useState<SimpsonCharacter>({
 		name: "",
 		image: "",
@@ -75,8 +74,7 @@ function App() {
 				<div className='card-container'>
 					<SearchInput handleChange={debounceHandleChange}></SearchInput>
 					<SimpsonViewer
-						name={simpson.name}
-						image={simpson.image}
+						data={simpson}
 					></SimpsonViewer>
 					<QuoteList quotes={simpson.quotes}></QuoteList>
 				</div>

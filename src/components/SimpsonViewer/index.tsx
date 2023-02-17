@@ -1,12 +1,12 @@
+import { SimpsonCharacter } from "../../App/App";
 import "./index.css";
+interface SimpsonDetailsProps {
+	data: SimpsonCharacter;
+}
 
-type SimpsonDetails = {
-	name: string;
-	image: string;
-};
-
-export function SimpsonViewer(props: SimpsonDetails) {
-	const { name, image } = props;
+export function SimpsonViewer(data: SimpsonDetailsProps) {
+	// destructuring within destructuring 
+	const { data: {name, image} } = data;
 
 	return (
 		<div className='simpson-card'>
